@@ -1,0 +1,259 @@
+body {
+    margin: 0;
+    background-position: center;
+    background-size: cover;
+    color: white;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+.main {
+    position: relative;
+    z-index: 0;
+    width: 70%;
+    height: 40%;
+    padding: 32px;
+    border-radius: 12px;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    align-items: center;
+    background-color: rgba(0,0,0,.7);
+}
+
+.profile {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    font-size: 2em;
+    text-align: center;
+    gap: 32px;
+}
+
+.pfp {
+    height: 240px;
+    border: solid 2px white;
+    border-radius: 50%;
+}
+
+.image {
+    border-radius: 50%;
+    height: inherit;
+    width: 240px;
+}
+
+.bio{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    height: 100%;
+    width: 70%;
+}
+
+.about {
+    height: 80%;
+    font-size: 1.3em;
+    padding-top: 12px;
+    line-height: 28px;
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 20%;
+    gap: 128px;
+    align-items: center;
+}
+
+.logo {
+    outline: white 1px solid;
+    border-radius: 120px;
+    width: 64px;
+    height: 64px;
+    background-color: white;
+}
+
+h1, h2, h3 {
+    margin: 0;
+}
+
+/* pop-out menus */
+span:hover {
+    cursor:pointer;
+
+}
+.hover {
+    max-width: 750px;
+    display: none;
+    position: absolute;
+    border: solid 2px;
+    border-color: inherit;
+    padding: 24px;
+    background-color: rgba(0,0,0,.9);
+    font-weight: 400;
+}
+
+.gamesList, .interestList {
+    width: 95%;
+    position: absolute;
+    display: none;
+    border: solid 2px;
+    border-color: inherit;
+    flex-direction: column;
+    padding: 24px;
+    background-color: rgba(0,0,0,.8);
+}
+
+hr {
+    color: inherit;
+    border : 1px solid red;
+    border-color: inherit;
+}
+
+.gamesList div, .interestList div {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap:wrap;
+    align-items: center;
+}
+
+.gamesList img, .interestList img {
+    width: 96px;
+    padding: 32px;
+}
+
+.main::before    {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    padding: 3px;
+    /* the border thickness */
+    border-radius: 15px;
+    mask:
+        linear-gradient(#000 0 0) exclude,
+        linear-gradient(#000 0 0) content-box;
+}
+
+/* themes */
+.rukia {
+    color: rgb(141, 251, 255);
+    .logo {
+        background-color: rgb(141, 251, 255);
+        outline-color: rgb(141, 251, 255);
+    }
+    .about span {
+        color: white;
+    }
+}
+
+.rukia::before {
+    background: linear-gradient(to right, rgb(154, 255, 255), rgb(47, 109, 129), white);
+}
+
+.cyberpunk {
+    color: yellow;
+    .logo {
+        background-color: greenyellow;
+        outline-color: greenyellow;
+    }
+    .divider, .ver-divider, .pfp {
+        border-color: rgb(0, 133, 133);
+    }
+    .about span {
+        color: rgb(161, 255, 19);
+    }
+}
+
+.cyberpunk::before {
+    background: linear-gradient(37deg, red, greenyellow, cyan, yellow);
+}
+
+.red {
+    color: red;
+    .logo {
+        background-color: red;
+        outline-color: red;
+    }
+    .pfp {
+        border-color: darkred;
+    }
+    .about span {
+        color: rgb(129, 0, 0);
+    }
+}
+
+.red::before {
+    background: linear-gradient(to right, rgb(128, 0, 0), rgb(211, 0, 0));
+}
+
+.noelle {
+    color: #ee7300;
+    .logo {
+        background-color: #ee7300;
+        outline-color: #ee7300;
+    }
+    .pfp {
+        border-color: #b42400;
+    }
+    .about span {
+        color:#b42400;
+    }
+}
+
+.noelle::before {
+    background: linear-gradient(to right, rgb(255, 123, 0), rgb(185, 22, 0));
+}
+
+.skong {
+    color: #d40035;
+    .logo {
+        background-color: #d40035;
+        outline-color: #fff;
+    }
+    .pfp, .ver-divider, .divider {
+        border-color: #ffffff;
+    }
+    .about span {
+        color: #8b002a;
+    }
+}
+
+.skong::before {
+    background: linear-gradient(75deg, rgb(255, 0, 85), rgb(255, 255, 255), rgb(255, 0, 85));
+
+}
+
+/* other stuff */
+
+.ver-divider {
+    border: 1px solid;
+    border-color: inherit;
+    display: flex;
+    height: 95%;
+    border-radius: 10%;
+}
+
+.divider {
+    border: 1px solid;
+    border-radius: 50%;
+    display: flex;
+    height: 0%;
+    border-color: inherit;
+}
+
+.roboto-mono-reg {
+    font-family: "Roboto Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+}
