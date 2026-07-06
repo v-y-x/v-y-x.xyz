@@ -2,7 +2,6 @@ body {
     margin: 0;
     background-position: center;
     background-size: cover;
-    color: white;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -25,6 +24,18 @@ body {
     background-color: rgba(0,0,0,.7);
 }
 
+.animation {
+    --feather: 128px;
+
+    mask-image: linear-gradient(to left, transparent, black var(--feather), black);
+    mask-repeat: no-repeat;
+    mask-size: 200% 100%;
+    mask-position: 0% 0%;
+
+    animation: ease 4s reveal backwards;
+    animation-delay: 2s;
+}
+
 .profile {
     width: 30%;
     height: 100%;
@@ -40,7 +51,7 @@ body {
 
 .pfp {
     height: 240px;
-    border: solid 2px white;
+    border: solid 2px;
     border-radius: 50%;
 }
 
@@ -75,11 +86,10 @@ body {
 }
 
 .logo {
-    outline: white 1px solid;
+    outline: 1px solid;
     border-radius: 120px;
     width: 64px;
     height: 64px;
-    background-color: white;
 }
 
 h1, h2, h3 {
@@ -89,8 +99,8 @@ h1, h2, h3 {
 /* pop-out menus */
 span:hover {
     cursor:pointer;
-
 }
+
 .hover {
     max-width: 750px;
     display: none;
@@ -115,23 +125,22 @@ span:hover {
 
 hr {
     color: inherit;
-    border : 1px solid red;
     border-color: inherit;
 }
 
-.gamesList div, .interestList div {
+.floatbox div {
     display: flex;
     justify-content: space-evenly;
     flex-wrap:wrap;
     align-items: center;
 }
 
-.gamesList img, .interestList img {
+.floatbox img {
     width: 96px;
     padding: 32px;
 }
 
-.main::before    {
+.main::before {
     content: "";
     position: absolute;
     z-index: -1;
@@ -158,6 +167,24 @@ hr {
 
 .rukia::before {
     background: linear-gradient(to right, rgb(154, 255, 255), rgb(47, 109, 129), white);
+}
+
+.ado {
+    color: rgb(71, 68, 255);
+    .logo {
+        background-color: rgb(3, 0, 194);
+        outline-color: rgb(3, 0, 194);
+    }
+    .pfp{
+        border-color: rgb(3, 0, 134)
+    }
+    .about span {
+        color: rgb(2, 0, 128);
+    }
+}
+
+.ado::before {
+    background: linear-gradient(135deg, rgb(38, 0, 255), rgb(5, 0, 80));
 }
 
 .cyberpunk {
@@ -230,7 +257,6 @@ hr {
 
 .skong::before {
     background: linear-gradient(75deg, rgb(255, 0, 85), rgb(255, 255, 255), rgb(255, 0, 85));
-
 }
 
 /* other stuff */
@@ -256,4 +282,14 @@ hr {
     font-optical-sizing: auto;
     font-weight: 200;
     font-style: normal;
+}
+
+/* animations */
+@keyframes reveal {
+    from {
+        mask-size: 0% 100%;
+    }
+    to {
+        mask-size: calc(100% + var(--feather)) 100%;
+    }
 }

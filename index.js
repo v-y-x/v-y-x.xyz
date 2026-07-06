@@ -9,9 +9,13 @@ var hoverDiv = document.querySelector('.hover')
 var quoteLine = document.querySelector('.quote')
 var quoteFlag = false
 
+content.addEventListener('animationend', () => {
+    content.classList.remove('animation')
+})
+
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
-const rand = Math.floor(Math.random() * 5)
+const rand = Math.floor(Math.random() * 6)
     switch (rand) {
         case 0:
             content.classList.add("rukia")
@@ -30,7 +34,7 @@ const rand = Math.floor(Math.random() * 5)
             content.classList.add("red")
             var randRed = "red" + Math.floor(Math.random() * 3)
             image.src = pfp + randRed + ".jpg"
-            bg.style.backgroundImage = `url(${banner}red.png)`
+            bg.style.backgroundImage = `url(${banner}red.gif)`
             break;
         case 3:
             content.classList.add('noelle')
@@ -40,11 +44,18 @@ const rand = Math.floor(Math.random() * 5)
             quoteFlag = true
             break;
         case 4:
+            content.classList.add('ado')
+            image.src = pfp + 'ado.jpg'
+            bg.style.backgroundImage = `url(${banner}ado.gif)`
+            break;
+        case 5:
             content.classList.add('skong')
             image.src = pfp + 'skong.gif'
             bg.style.backgroundImage = `url(${banner}skong_banner.gif)`
-            quoteLine.innerHTML = 'fren.'
+            skongQuotes = ["fren.", "garana.", "adidas!", "git gud!"]
+            quoteLine.innerHTML = skongQuotes[Math.floor(Math.random() * skongQuotes.length)]
             quoteFlag = true
+            break;
     }
 
 fetch('data/quote.json')
