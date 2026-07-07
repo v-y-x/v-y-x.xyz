@@ -8,8 +8,11 @@ var interestList = document.querySelector('.interestList')
 var hoverDiv = document.querySelector('.hover')
 var quoteLine = document.querySelector('.quote')
 var quoteFlag = false
+var menuFlag = false
+var menu
 
-content.addEventListener('animationend', () => {
+content.addEventListener('animationend', (event) => {
+    if (event.target !== content) return;
     content.classList.remove('animation')
 })
 
@@ -78,12 +81,11 @@ async function copyDiscord(text) {
     content.removeChild(copyBox)
 }
 
-function showGames() {
-    gamesList.style.display = 'flex'
-}
-
-function showInterests() {
-    interestList.style.display = 'flex'
+async function showMenu(element) {
+    menu = document.querySelector('.' + element.getAttribute("menu"));
+    menu.style.display = 'block'
+    await delay(100)
+    menuFlag = true
 }
 
 // hover logic
@@ -114,13 +116,23 @@ fetch('data/notes.json')
     })  
 
 document.addEventListener('click', (event) => {
-    if (event.target != document.querySelector('#gameClick') && !gamesList.contains(event.target)){
-        gamesList.style.display = 'none'
+    if (menuFlag && !menu.contains(event.target)) {
+        menu.classList.add('hide')
+        hideMenu()        
     }
 })
 
-document.addEventListener('click', (event) => {
-    if (event.target != document.querySelector('#intClick') && !interestList.contains(event.target)){
-        interestList.style.display = 'none'
-    }
+async function hideMenu() {
+    await delay(700)
+    menu.style.display = 'none'
+    menu.classList.remove('hide')
+    menuFlag = false
+}
+
+var delayVar = 2.8
+
+document.querySelectorAll('.logo').forEach(logo => {
+    logo.classList.add('up-reveal')
+    delayVar = delayVar + 0.4 
+    logo.style.animationDelay = delayVar + 's'
 })

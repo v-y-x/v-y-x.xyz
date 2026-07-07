@@ -25,15 +25,13 @@ body {
 }
 
 .animation {
-    --feather: 128px;
-
+    --feather: 256px;
     mask-image: linear-gradient(to left, transparent, black var(--feather), black);
     mask-repeat: no-repeat;
     mask-size: 200% 100%;
     mask-position: 0% 0%;
-
     animation: ease 4s reveal backwards;
-    animation-delay: 2s;
+    animation-delay: 1.5s;
 }
 
 .profile {
@@ -73,7 +71,10 @@ body {
     height: 80%;
     font-size: 1.3em;
     padding-top: 12px;
+    opacity: 0%;
     line-height: 28px;
+    animation: text-reveal 2s forwards ease;
+    animation-delay: 3s
 }
 
 .links {
@@ -90,6 +91,13 @@ body {
     border-radius: 120px;
     width: 64px;
     height: 64px;
+    opacity: 0%;
+}
+
+.quote {
+    opacity: 0% ;
+    animation: text-reveal-reverse 1s forwards ease-out;
+    animation-delay: 2s;
 }
 
 h1, h2, h3 {
@@ -126,6 +134,15 @@ span:hover {
 hr {
     color: inherit;
     border-color: inherit;
+}
+
+.floatbox {
+    --feather: 128px;
+    mask-image: linear-gradient(to top, transparent, black var(--feather), black);
+    mask-repeat: no-repeat;
+    mask-size: 200% 150%;
+    mask-position: 0% 0%;
+    animation: div-reveal 1.5s ease-out forwards;
 }
 
 .floatbox div {
@@ -175,7 +192,7 @@ hr {
         background-color: rgb(3, 0, 194);
         outline-color: rgb(3, 0, 194);
     }
-    .pfp{
+    .pfp {
         border-color: rgb(3, 0, 134)
     }
     .about span {
@@ -292,4 +309,53 @@ hr {
     to {
         mask-size: calc(100% + var(--feather)) 100%;
     }
+}
+
+@keyframes div-reveal {
+    from {
+        mask-size: 100% 0%;
+    }
+    to {
+        mask-size: calc(100% + var(--feather)) 150%;
+    }
+
+}
+@keyframes div-hide {
+    from {
+        mask-size: calc(100% + var(--feather)) 120%;
+    }
+    to {
+        mask-size: 100% 0%;
+    }
+}
+
+.hide {
+    animation: div-hide .6s ease-in forwards;
+}
+
+@keyframes text-reveal {
+    from {
+        transform: translateY(-200px);
+        opacity: 0%;
+    }
+    to {
+        transform: translateY(0px);
+        opacity: 100%;
+    }
+}
+
+@keyframes text-reveal-reverse {
+    from {
+        transform: translateY(200px);
+        opacity: 0%;
+    }
+    to {
+        transform: translateY(0px);
+        opacity: 100%;
+    }
+}
+
+.up-reveal {
+    animation: text-reveal-reverse 1.5s forwards ease;
+    animation-delay: 3s
 }
