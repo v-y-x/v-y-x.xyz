@@ -7,6 +7,43 @@ body {
     justify-content: center;
     align-items: center;
     background-color: black;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.widgets {
+    display: flex;
+    gap: 64px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.widget {
+    border: 2px solid;
+    padding: 24px;
+    background-color: rgba(0, 0, 0, .7);
+    opacity: 0%;
+    display: flex;
+    flex-direction: row;
+    font-size: 1.2em;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.fmCover {
+    width: 80px;
+}
+
+.fmWidget{
+    text-wrap: wrap;
+    gap: 32px;
+}
+
+.fmInfo {
+    display: flex;
+    flex-direction: column;
 }
 
 .main {
@@ -15,7 +52,6 @@ body {
     width: 70%;
     height: 40%;
     padding: 32px;
-    border-radius: 12px;
     justify-content: center;
     display: flex;
     flex-direction: row;
@@ -110,6 +146,7 @@ span:hover {
 }
 
 .hover {
+    z-index: 99;
     max-width: 750px;
     display: none;
     position: absolute;
@@ -120,7 +157,7 @@ span:hover {
     font-weight: 400;
 }
 
-.gamesList, .interestList {
+.floatbox {
     width: 95%;
     position: absolute;
     display: none;
@@ -128,7 +165,11 @@ span:hover {
     border-color: inherit;
     flex-direction: column;
     padding: 24px;
-    background-color: rgba(0,0,0,.8);
+    background-color: rgba(0,0,0,.85);
+}
+
+a {
+    text-decoration: none;
 }
 
 hr {
@@ -137,6 +178,8 @@ hr {
 }
 
 .floatbox {
+    z-index: 99;
+    width: 75%;
     --feather: 128px;
     mask-image: linear-gradient(to top, transparent, black var(--feather), black);
     mask-repeat: no-repeat;
@@ -162,9 +205,7 @@ hr {
     position: absolute;
     z-index: -1;
     inset: 0;
-    padding: 3px;
-    /* the border thickness */
-    border-radius: 15px;
+    padding: 3px;  /* the border thickness */
     mask:
         linear-gradient(#000 0 0) exclude,
         linear-gradient(#000 0 0) content-box;
@@ -173,11 +214,12 @@ hr {
 /* themes */
 .rukia {
     color: rgb(141, 251, 255);
+    border-color: rgb(141, 251, 255);
     .logo {
         background-color: rgb(141, 251, 255);
         outline-color: rgb(141, 251, 255);
     }
-    .about span {
+    .about span, .fmInfo a {
         color: white;
     }
 }
@@ -188,6 +230,7 @@ hr {
 
 .ado {
     color: rgb(71, 68, 255);
+    border-color: rgb(71, 68, 255);
     .logo {
         background-color: rgb(3, 0, 194);
         outline-color: rgb(3, 0, 194);
@@ -195,8 +238,8 @@ hr {
     .pfp {
         border-color: rgb(3, 0, 134)
     }
-    .about span {
-        color: rgb(2, 0, 128);
+    .about span, .fmInfo a {
+        color: rgb(3, 0, 175);
     }
 }
 
@@ -206,6 +249,7 @@ hr {
 
 .cyberpunk {
     color: yellow;
+    border-color: yellow;
     .logo {
         background-color: greenyellow;
         outline-color: greenyellow;
@@ -213,7 +257,7 @@ hr {
     .divider, .ver-divider, .pfp {
         border-color: rgb(0, 133, 133);
     }
-    .about span {
+    .about span, .fmInfo a {
         color: rgb(161, 255, 19);
     }
 }
@@ -224,6 +268,7 @@ hr {
 
 .red {
     color: red;
+    border-color: red;
     .logo {
         background-color: red;
         outline-color: red;
@@ -231,7 +276,7 @@ hr {
     .pfp {
         border-color: darkred;
     }
-    .about span {
+    .about span, .fmInfo a {
         color: rgb(129, 0, 0);
     }
 }
@@ -242,6 +287,7 @@ hr {
 
 .noelle {
     color: #ee7300;
+    border-color: #ee7300;
     .logo {
         background-color: #ee7300;
         outline-color: #ee7300;
@@ -249,7 +295,7 @@ hr {
     .pfp {
         border-color: #b42400;
     }
-    .about span {
+    .about span, .fmInfo a {
         color:#b42400;
     }
 }
@@ -260,6 +306,7 @@ hr {
 
 .skong {
     color: #d40035;
+    border-color: rgb(255, 0, 85);
     .logo {
         background-color: #d40035;
         outline-color: #fff;
@@ -267,7 +314,7 @@ hr {
     .pfp, .ver-divider, .divider {
         border-color: #ffffff;
     }
-    .about span {
+    .about span, .fmInfo a {
         color: #8b002a;
     }
 }
@@ -353,6 +400,11 @@ hr {
         transform: translateY(0px);
         opacity: 100%;
     }
+}
+
+.down-reveal {
+    animation: text-reveal 1.5s forwards ease;
+    animation-delay: 4s
 }
 
 .up-reveal {
