@@ -37,7 +37,7 @@ content.addEventListener('animationend', (event) => {
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms)) // delay function
 
 // random theme logic
-themes = ['rukia', 'cyberpunk', 'red', 'noelle', 'ado', 'skong']
+themes = ['rukia', 'cyberpunk', 'red', 'noelle', 'ado', 'skong', 'motoko']
 const rand = Math.floor(Math.random() * themes.length)
     switch (rand) {
         case 0:
@@ -78,6 +78,11 @@ const rand = Math.floor(Math.random() * themes.length)
             skongQuotes = ["fren.", "garana.", "adidas!", "git gud!", "shaw!"]
             quoteLine.innerHTML = skongQuotes[Math.floor(Math.random() * skongQuotes.length)]
             quoteFlag = true
+            break;
+        case 6:
+            content.classList.add(themes[rand])
+            image.src = pfp + 'motoko.gif'
+            bg.style.backgroundImage = `url(${banner}motoko.gif)`
             break;
     }
 
@@ -146,18 +151,29 @@ fetch('data/notes.json')
     })  
 
 // inner menu functions
-document.addEventListener('click', (event) => {
+document.addEventListener('click', async function(event){
     if (menuFlag && !menu.contains(event.target)) {
         menu.classList.add('hide')
-        hideMenu()        
+        hideMenu()
     }
 })
 
 async function showMenu(element) {
-    menu = document.querySelector('.' + element.getAttribute("menu"));
-    menu.style.display = 'block'
-    await delay(100)
-    menuFlag = true
+    if (checkIfUserIsOnMobileDevice(userAgent)) {
+        var copyBox = document.createElement('div')
+        copyBox.classList.add('hover')
+        copyBox.style.display = 'block'
+        copyBox.innerHTML = 'seems like you\'re on a mobile or tablet. displaying these lists currently isn\'t supported on these devices. sorry!'
+        content.appendChild(copyBox)
+        await delay(4000)
+        content.removeChild(copyBox)
+    }
+    else {
+        menu = document.querySelector('.' + element.getAttribute("menu"));
+        menu.style.display = 'block'
+        await delay(100)
+        menuFlag = true
+    }
 }
 
 async function hideMenu() {
@@ -174,3 +190,15 @@ document.querySelectorAll('.logo').forEach(logo => {
     logoDelay = logoDelay + 0.4 
     logo.style.animationDelay = logoDelay + 's'
 })
+
+// mobile user check
+var userAgent = navigator.userAgent.toLowerCase(),
+    userIsOnMobileDevice = checkIfUserIsOnMobileDevice(userAgent);
+
+function checkIfUserIsOnMobileDevice(userAgent) {
+    if (userAgent.includes('mobi') || userAgent.includes('tablet')){
+        return true;
+    }
+    return false;
+}
+console.log(navigator.userAgent)
